@@ -1,28 +1,46 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 import HomeScreen from "./screens/home/HomeScreen";
 import SearchScreen from "./screens/search/SearchScreen";
-import TrailersScreeen from "./screens/trailers/TrailersScreen";
-import FavoritesScreeen from "./screens/favorites/FavoritesScreen";
+import TrailersScreen from "./screens/trailers/TrailersScreen";
+import FavoritesScreen from "./screens/favorites/FavoritesScreen";
 
 const BottomTabs = createBottomTabNavigator();
 
+const screenOptions = ({ route }) => ({
+  headerShown: false,
+  tabBarIcon: ({ color, size }) => {
+    const icons = {
+      Home: "home",
+      Search: "search",
+      Trailers: "videocam",
+      Favorites: "heart",
+    };
+
+    const iconName = icons[route.name];
+    return <Ionicons name={iconName} size={size} color={color} />;
+  },
+});
+
 export default function App() {
   return (
-    <>
-      <StatusBar style="auto" />
+    <Provider store={store}>
+      <StatusBar style="light" />
       <NavigationContainer>
-        <BottomTabs.Navigator>
+        <BottomTabs.Navigator screenOptions={screenOptions}>
           <BottomTabs.Screen name="Home" component={HomeScreen} />
           <BottomTabs.Screen name="Search" component={SearchScreen} />
-          <BottomTabs.Screen name="Trailers" component={TrailersScreeen} />
-          <BottomTabs.Screen name="Favorites" component={FavoritesScreeen} />
+          <BottomTabs.Screen name="Trailers" component={TrailersScreen} />
+          <BottomTabs.Screen name="Favorites" component={FavoritesScreen} />
         </BottomTabs.Navigator>
       </NavigationContainer>
-    </>
+    </Provider>
   );
 }
