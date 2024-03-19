@@ -12,21 +12,21 @@ import { useNavigation } from "@react-navigation/native";
 function HomeScreen() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  /* const { topRatedMovies, statusTopRatedMovies } = useSelector(
+  const { topRatedMovies, statusTopRatedMovies } = useSelector(
     (state) => state.topRatedFilms
   );
   const { topRatedTvSeries, statusTopRatedTvSeries } = useSelector(
     (state) => state.topRatedTvSeries
   );
- */
-  /* useEffect(() => {
+
+  useEffect(() => {
     dispatch(fetchTopRatedFilms());
     dispatch(fetchTopRatedTvSeries());
-  }, [dispatch]); */
+  }, [dispatch]);
   return (
     <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
       <PopularCarousel />
-      {/* <TopRatedScroll
+      <TopRatedScroll
         header={"Top Rated Films"}
         data={topRatedMovies}
         mediaType={"movie"}
@@ -35,7 +35,7 @@ function HomeScreen() {
         header={"Top TV Series"}
         data={topRatedTvSeries}
         mediaType={"tv"}
-      /> */}
+      />
     </ScrollView>
   );
 }

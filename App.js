@@ -2,8 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
-import "react-native-gesture-handler";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -16,7 +15,7 @@ import TrailersScreen from "./screens/trailers/TrailersScreen";
 import FavoritesScreen from "./screens/favorites/FavoritesScreen";
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const screenOptions = ({ route }) => ({
   tabBarIcon: ({ color, size }) => {
@@ -49,9 +48,9 @@ function AppTabNavigator() {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen
-        options={{ headerShown: false }}
-        name="Home"
+        name="home"
         component={HomeStackNavigator}
+        options={{ headerShown: false }}
       />
       <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Trailers" component={TrailersScreen} />
