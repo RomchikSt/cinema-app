@@ -5,13 +5,16 @@ import {
   StyleSheet,
   Animated,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchTrendingMovies } from "../../../store/features/weekTranding";
+import { fetchTrendingMovies } from "../../../store/features/weekTrending";
 
-import SliderItem from "./SliderItem";
+import SliderPopularItem from "./SliderPopularItem";
 import Pagination from "./Pagination";
+
+const { height } = Dimensions.get("screen");
 
 function PopularCarousel() {
   const dispatch = useDispatch();
@@ -30,7 +33,7 @@ function PopularCarousel() {
   };
 
   return (
-    <View>
+    <View style={styles.carouselContainer}>
       <ScrollView
         horizontal
         pagingEnabled
@@ -43,7 +46,7 @@ function PopularCarousel() {
         scrollEventThrottle={16}
       >
         {movies.map((item, idx) => (
-          <SliderItem key={item.id} item={item} />
+          <SliderPopularItem key={item.id} item={item} />
         ))}
       </ScrollView>
       <Pagination data={movies} scrollX={scrollX} index={index} />
@@ -54,5 +57,10 @@ function PopularCarousel() {
 export default PopularCarousel;
 
 const styles = StyleSheet.create({
-  image: {},
+  carouselContainer: {
+    width: "100%",
+    alignContent: "center",
+    justifyContent: "center",
+    height: height * 0.7,
+  },
 });

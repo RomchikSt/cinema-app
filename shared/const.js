@@ -7,7 +7,6 @@ export const LANGUAGES = [
   { language: "German", code: "de-DE" },
   { language: "Italian", code: "it-IT" },
   { language: "Spanish", code: "es-ES" },
-  { language: "Russian", code: "ru-RU" },
   { language: "Japanese", code: "ja-JP" },
   { language: "Korean", code: "ko-KR" },
   { language: "Chinese", code: "zh-CN" },
