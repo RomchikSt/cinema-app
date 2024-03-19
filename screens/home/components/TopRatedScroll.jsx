@@ -8,11 +8,18 @@ import {
   Pressable,
   Modal,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
 
 const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 
-const TopRatedScroll = ({ header, data }) => {
+const TopRatedScroll = ({ header, data, mediaType }) => {
+  const navigation = useNavigation();
+
+  const handlePress = (id) => {
+    navigation.navigate("InfoFilmScreen", { id: id, mediaType });
+  };
+
   return (
     <View>
       <View style={styles.headerContainer}>
@@ -26,8 +33,12 @@ const TopRatedScroll = ({ header, data }) => {
         bounces={false}
         showsHorizontalScrollIndicator={false}
       >
-        {data.slice(0, 10).map((film, i) => (
-          <View style={styles.scrollContainer} key={film.id}>
+        {data.map((film, i) => (
+          <Pressable
+            style={styles.scrollContainer}
+            key={film.id}
+            onPress={() => handlePress(film.id)}
+          >
             <Image
               source={{ uri: `${BASE_IMAGE_URL}${film.poster_path}` }}
               resizeMode="cover"
@@ -41,7 +52,7 @@ const TopRatedScroll = ({ header, data }) => {
               </View>
             </View>
             <Text style={styles.title}>{film.title || film.name}</Text>
-          </View>
+          </Pressable>
         ))}
       </ScrollView>
     </View>
