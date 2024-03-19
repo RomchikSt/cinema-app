@@ -7,10 +7,7 @@ import { fetchTopRatedTvSeries } from "../../store/features/topRatedTvSeries";
 import PopularCarousel from "./components/PopularCarousel";
 import TopRatedScroll from "./components/TopRatedScroll";
 
-import { useNavigation } from "@react-navigation/native";
-
 function HomeScreen() {
-  const navigation = useNavigation();
   const dispatch = useDispatch();
   const { topRatedMovies, statusTopRatedMovies } = useSelector(
     (state) => state.topRatedFilms
