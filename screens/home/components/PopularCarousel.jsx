@@ -10,6 +10,7 @@ import {
 import { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchTrendingMovies } from "../../../store/features/weekTrending";
+import { useNavigation } from "@react-navigation/native";
 
 import SliderPopularItem from "./SliderPopularItem";
 import Pagination from "./Pagination";
@@ -18,6 +19,7 @@ const { height } = Dimensions.get("screen");
 
 function PopularCarousel() {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const { movies, status } = useSelector((state) => state.weekTrending);
   const [index, setIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -25,6 +27,10 @@ function PopularCarousel() {
   useEffect(() => {
     dispatch(fetchTrendingMovies());
   }, [dispatch]);
+
+  const handlePress = (id, mediaType) => {
+    navigation.navigate("InfoFilmScreen", { id: id, mediaType: mediaType });
+  };
 
   const handleOnScroll = (event) => {
     Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
@@ -46,7 +52,11 @@ function PopularCarousel() {
         scrollEventThrottle={16}
       >
         {movies.map((item, idx) => (
-          <SliderPopularItem key={item.id} item={item} />
+          <SliderPopularItem
+            key={item.id}
+            item={item}
+            onPress={() => handlePress(item.id, item.media_type)}
+          />
         ))}
       </ScrollView>
       <Pagination data={movies} scrollX={scrollX} index={index} />

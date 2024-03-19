@@ -7,24 +7,35 @@ import { fetchTopRatedTvSeries } from "../../store/features/topRatedTvSeries";
 import PopularCarousel from "./components/PopularCarousel";
 import TopRatedScroll from "./components/TopRatedScroll";
 
+import { useNavigation } from "@react-navigation/native";
+
 function HomeScreen() {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { topRatedMovies, statusTopRatedMovies } = useSelector(
+  /* const { topRatedMovies, statusTopRatedMovies } = useSelector(
     (state) => state.topRatedFilms
   );
   const { topRatedTvSeries, statusTopRatedTvSeries } = useSelector(
     (state) => state.topRatedTvSeries
   );
-
-  useEffect(() => {
+ */
+  /* useEffect(() => {
     dispatch(fetchTopRatedFilms());
     dispatch(fetchTopRatedTvSeries());
-  }, [dispatch]);
+  }, [dispatch]); */
   return (
     <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
       <PopularCarousel />
-      <TopRatedScroll header={"Top Rated Films"} data={topRatedMovies} />
-      <TopRatedScroll header={"Top TV Series"} data={topRatedTvSeries} />
+      {/* <TopRatedScroll
+        header={"Top Rated Films"}
+        data={topRatedMovies}
+        mediaType={"movie"}
+      />
+      <TopRatedScroll
+        header={"Top TV Series"}
+        data={topRatedTvSeries}
+        mediaType={"tv"}
+      /> */}
     </ScrollView>
   );
 }
