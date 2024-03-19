@@ -39,7 +39,14 @@ function HomeStackNavigator() {
         name="HomeScreen"
         component={HomeScreen}
       />
-      <Stack.Screen name="InfoFilmScreen" component={InfoFilmScreen} />
+      <Stack.Screen
+        name="InfoFilmScreen"
+        component={InfoFilmScreen}
+        options={{
+          headerBackTitleVisible: false,
+          headerTitleAlign: "center",
+        }}
+      />
     </Stack.Navigator>
   );
 }

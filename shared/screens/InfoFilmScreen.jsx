@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 import { TMDB_TOKEN } from "../const";
 
 const InfoScreen = ({ route }) => {
   const { id, mediaType } = route.params;
   const [info, setInfo] = useState(null);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const options = {
@@ -27,6 +29,14 @@ const InfoScreen = ({ route }) => {
         console.error("Error fetching data: ", error);
       });
   }, [id, mediaType]);
+
+  useLayoutEffect(() => {
+    if (info) {
+      navigation.setOptions({
+        title: info.title || info.name,
+      });
+    }
+  }, [info, navigation]);
 
   if (!info) {
     return (
