@@ -5,6 +5,7 @@ import {
   View,
   Dimensions,
   Pressable,
+  ActivityIndicator,
 } from "react-native";
 
 const { width, height } = Dimensions.get("screen");
@@ -30,5 +31,10 @@ const styles = StyleSheet.create({
   img: {
     width: "100%",
     height: "70%",
+  },
+  loaderContainer: {
+    position: "absolute",
+    top: "35%",
+    left: "45%",
   },
 });

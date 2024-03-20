@@ -8,8 +8,8 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 
 import HomeScreen from "./screens/home/HomeScreen";
-import InfoFilmScreen from "./shared/screens/InfoFilmScreen";
-import InfoActorScreen from "./shared/screens/InfoActorScreen";
+import InfoFilmScreen from "./shared/screens/InfoFilmScreen/InfoFilmScreen";
+import InfoActorScreen from "./shared/screens/InfoActorScreen/InfoActorScreen";
 import SearchScreen from "./screens/search/SearchScreen";
 import TrailersScreen from "./screens/trailers/TrailersScreen";
 import FavoritesScreen from "./screens/favorites/FavoritesScreen";
@@ -42,6 +42,14 @@ function HomeStackNavigator() {
       <Stack.Screen
         name="InfoFilmScreen"
         component={InfoFilmScreen}
+        options={{
+          headerBackTitleVisible: false,
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="InfoActorScreen"
+        component={InfoActorScreen}
         options={{
           headerBackTitleVisible: false,
           headerTitleAlign: "center",
