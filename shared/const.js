@@ -1,6 +1,8 @@
 export const TMDB_TOKEN =
   "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMzlhMjZjMzRhMTY5ZWE2NTVjNDdhNmQzZWZhYWMwYSIsInN1YiI6IjY1MWFmNjI3NzQ1MDdkMDBjNTc4NTJlYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FJbUVai1ezTwoAIFgEF3IM3_jSz_bh_7mr8y1LQ8d8Q";
 
+export const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
+
 export const LANGUAGES = [
   { language: "English", code: "en-US" },
   { language: "French", code: "fr-FR" },

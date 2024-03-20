@@ -10,8 +10,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
-
-const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
+import { BASE_IMAGE_URL } from "../../../shared/const";
 
 const TopRatedScroll = ({ header, data, mediaType }) => {
   const navigation = useNavigation();
@@ -33,7 +32,7 @@ const TopRatedScroll = ({ header, data, mediaType }) => {
         bounces={false}
         showsHorizontalScrollIndicator={false}
       >
-        {data.map((film, i) => (
+        {data.slice(0, 10).map((film, i) => (
           <Pressable
             style={styles.scrollContainer}
             key={film.id}

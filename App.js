@@ -55,7 +55,7 @@ function AppTabNavigator() {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen
-        name="home"
+        name="Home"
         component={HomeStackNavigator}
         options={{ headerShown: false }}
       />
