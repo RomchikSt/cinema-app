@@ -1,15 +1,11 @@
 import {
-  FlatList,
   View,
-  Image,
   StyleSheet,
   Animated,
   ScrollView,
   Dimensions,
 } from "react-native";
-import { useRef, useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchTrendingMovies } from "../../../store/features/weekTrending";
+import { useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 import SliderPopularItem from "./SliderPopularItem";
@@ -17,16 +13,10 @@ import Pagination from "./Pagination";
 
 const { height } = Dimensions.get("screen");
 
-function PopularCarousel() {
-  const dispatch = useDispatch();
+function PopularCarousel({ movies }) {
   const navigation = useNavigation();
-  const { movies, status } = useSelector((state) => state.weekTrending);
   const [index, setIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    dispatch(fetchTrendingMovies());
-  }, [dispatch]);
 
   const handlePress = (id, mediaType) => {
     navigation.navigate("InfoFilmScreen", { id: id, mediaType: mediaType });
