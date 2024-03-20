@@ -12,8 +12,6 @@ const MovieShortInfo = ({
   vote_count,
   vote_average,
   genres,
-  budget,
-  revenue,
 }) => {
   return (
     <View style={styles.shortDescription}>
@@ -67,18 +65,6 @@ const MovieShortInfo = ({
               {genres.map((g) => g.name).join(", ")}
             </Text>
           </View>
-          {budget && revenue && (
-            <>
-              <View style={styles.boxRow}>
-                <Text style={styles.text}>Budget:</Text>
-                <Text>${budget.toLocaleString()}</Text>
-              </View>
-              <View style={styles.boxRow}>
-                <Text style={styles.text}>Revenue:</Text>
-                <Text>${revenue.toLocaleString()}</Text>
-              </View>
-            </>
-          )}
         </View>
       </View>
     </View>

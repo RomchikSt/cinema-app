@@ -146,8 +146,6 @@ const InfoScreen = ({ route }) => {
           vote_count={info.vote_count}
           vote_average={info.vote_average}
           genres={info.genres}
-          budget={info.budget}
-          revenue={info.revenue}
         />
         <MovieDescription overview={info.overview} />
       </View>

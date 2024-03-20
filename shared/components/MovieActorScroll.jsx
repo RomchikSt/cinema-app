@@ -1,13 +1,13 @@
 import { ScrollView, View, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import ScrollHeader from "./ScrollHeader";
-import MovieBox from "./MovieBox";
+import MovieActorBox from "./MovieActorBox";
 
-const MovieScroll = ({ header, data, mediaType, showLink }) => {
+const MovieActorScroll = ({ header, data, mediaType, showLink }) => {
   const navigation = useNavigation();
 
   const handlePress = (id) => {
-    navigation.push("InfoFilmScreen", { id: id, mediaType: mediaType });
+    navigation.push("InfoFilmScreen", { id: id, mediaType });
   };
 
   return (
@@ -19,23 +19,27 @@ const MovieScroll = ({ header, data, mediaType, showLink }) => {
         showsHorizontalScrollIndicator={false}
       >
         {data &&
-          data.slice(0, 10).map((film, i) => {
+          data.slice(0, 10).map((film) => {
             const title =
-              film.title && film.title.length > 20
-                ? film.title.slice(0, 20) + "..."
+              film.title && film.title.length > 10
+                ? film.title.slice(0, 10) + "..."
                 : film.title;
             const name =
-              film.name && film.name.length > 20
-                ? film.name.slice(0, 20) + "..."
+              film.name && film.name.length > 10
+                ? film.name.slice(0, 10) + "..."
                 : film.name;
             return (
               <Pressable key={film.id} onPress={() => handlePress(film.id)}>
-                <MovieBox
-                  key={film.id}
-                  poster={film.poster_path}
-                  number={i + 1}
+                <MovieActorBox
+                  character={
+                    film.character.length > 10
+                      ? film.character.slice(0, 10) + "..."
+                      : film.character
+                  }
+                  release_date={film.release_date.slice(0, 4)}
                   score={film.vote_average}
                   title={title || name}
+                  poster={film.poster_path}
                 />
               </Pressable>
             );
@@ -45,4 +49,4 @@ const MovieScroll = ({ header, data, mediaType, showLink }) => {
   );
 };
 
-export default MovieScroll;
+export default MovieActorScroll;

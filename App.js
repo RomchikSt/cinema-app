@@ -11,7 +11,6 @@ import HomeScreen from "./screens/home/HomeScreen";
 import InfoFilmScreen from "./shared/screens/InfoFilmScreen/InfoFilmScreen";
 import InfoActorScreen from "./shared/screens/InfoActorScreen/InfoActorScreen";
 import SearchScreen from "./screens/search/SearchScreen";
-import TrailersScreen from "./screens/trailers/TrailersScreen";
 import FavoritesScreen from "./screens/favorites/FavoritesScreen";
 
 const Tab = createBottomTabNavigator();
@@ -22,7 +21,6 @@ const screenOptions = ({ route }) => ({
     const icons = {
       Home: "home",
       Search: "search",
-      Trailers: "videocam",
       Favorites: "heart",
     };
 
@@ -68,7 +66,6 @@ function AppTabNavigator() {
         options={{ headerShown: false }}
       />
       <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Trailers" component={TrailersScreen} />
       <Tab.Screen name="Favorites" component={FavoritesScreen} />
     </Tab.Navigator>
   );
