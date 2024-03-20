@@ -21,7 +21,11 @@ function HomeScreen() {
     dispatch(fetchTopRatedTvSeries());
   }, [dispatch]);
   return (
-    <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      bounces={false}
+      showsVerticalScrollIndicator={false}
+      style={styles.container}
+    >
       <PopularCarousel />
       <TopRatedScroll
         header={"Top Rated Films"}
@@ -39,4 +43,6 @@ function HomeScreen() {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {},
+});
