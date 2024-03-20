@@ -2,7 +2,7 @@ import { StyleSheet, Image, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { BASE_IMAGE_URL } from "../const";
 
-const MovieBox = ({ number, score, title, poster }) => {
+const MovieActorBox = ({ character, release_date, score, title, poster }) => {
   return (
     <View style={styles.scrollContainer}>
       <Image
@@ -11,23 +11,26 @@ const MovieBox = ({ number, score, title, poster }) => {
         style={styles.img}
       />
       <View style={styles.topContainer}>
-        <Text style={styles.number}>{number}</Text>
-        <View style={styles.scoreContainer}>
-          <AntDesign name="star" size={14} color="gold" />
-          <Text>{score && score.toFixed(1)}</Text>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.character}>{character}</Text>
+        <View style={styles.scorYearContainer}>
+          <Text style={styles.title}>{release_date}</Text>
+          <View style={styles.scoreContainer}>
+            <AntDesign name="star" size={14} color="gold" />
+            <Text>{score && score.toFixed(1)}</Text>
+          </View>
         </View>
       </View>
-      <Text style={styles.title}>{title}</Text>
     </View>
   );
 };
 
-export default MovieBox;
+export default MovieActorBox;
 
 const styles = StyleSheet.create({
   scrollContainer: {
     width: 120,
-    height: 260,
+    height: 240,
     margin: 12,
     backgroundColor: "white",
     borderRadius: 10,
@@ -41,20 +44,18 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   topContainer: {
-    flexDirection: "row",
+    marginVertical: 4,
     marginHorizontal: 10,
-    alignItems: "center",
-    justifyContent: "space-between",
+    gap: 2,
   },
-  number: {
-    color: "#ccc",
-    fontSize: 28,
-    fontWeight: "bold",
+  scorYearContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 6,
   },
   scoreContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
     gap: 5,
   },
   img: {
@@ -62,9 +63,13 @@ const styles = StyleSheet.create({
     height: "65%",
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
+    flex: 1,
   },
   title: {
-    marginHorizontal: 10,
     fontSize: 14,
+  },
+  character: {
+    fontStyle: "italic",
+    fontSize: 12,
   },
 });
