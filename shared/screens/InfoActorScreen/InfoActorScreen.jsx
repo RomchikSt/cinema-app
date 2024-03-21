@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, ScrollView } from "react-native";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { TMDB_TOKEN } from "../../const";
@@ -12,7 +12,6 @@ const InfoActorScreen = ({ route }) => {
   const [infoActor, setInfoActor] = useState(null);
   const [movies, setMovies] = useState(null);
   const [tvSeries, setTvSeries] = useState(null);
-  const [crew, setCrew] = useState(null);
 
   useEffect(() => {
     const fetchInfoActor = async () => {
@@ -72,29 +71,9 @@ const InfoActorScreen = ({ route }) => {
       }
     };
 
-    const fetchCrew = async () => {
-      const crewOptions = {
-        method: "GET",
-        url: `https://api.themoviedb.org/3/person/${id}/combined_credits`,
-        params: { language: "en-US" },
-        headers: {
-          accept: "application/json",
-          Authorization: `${TMDB_TOKEN}`,
-        },
-      };
-
-      try {
-        const crewResponse = await axios.request(crewOptions);
-        setCrew(crewResponse.data.crew);
-      } catch (error) {
-        console.error("Error fetching info data: ", error);
-      }
-    };
-
     fetchInfoActor();
     fetchMovies();
     fetchTvSeries();
-    fetchCrew();
   }, [id]);
 
   useEffect(() => {
@@ -109,16 +88,20 @@ const InfoActorScreen = ({ route }) => {
 
   return (
     <>
-      <View>
+      <ScrollView>
         <MovieActorScroll
           header={"Films"}
           data={movies}
           mediaType={"movie"}
           showLink={true}
         />
-      </View>
-      <ScrollHeader header={"Films"} showLink={true} />
-      <Text>{id}</Text>
+        <MovieActorScroll
+          header={"Tv Series"}
+          data={tvSeries}
+          mediaType={"tv"}
+          showLink={true}
+        />
+      </ScrollView>
     </>
   );
 };

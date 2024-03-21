@@ -29,14 +29,20 @@ const MovieActorScroll = ({ header, data, mediaType, showLink }) => {
                 ? film.name.slice(0, 10) + "..."
                 : film.name;
             return (
-              <Pressable key={film.id} onPress={() => handlePress(film.id)}>
+              <Pressable
+                key={film.credit_id}
+                onPress={() => handlePress(film.id)}
+              >
                 <MovieActorBox
                   character={
-                    film.character.length > 10
+                    film.character && film.character.length > 10
                       ? film.character.slice(0, 10) + "..."
                       : film.character
                   }
-                  release_date={film.release_date.slice(0, 4)}
+                  release_date={
+                    (film.release_date && film.release_date.slice(0, 4)) ||
+                    (film.first_air_date && film.first_air_date.slice(0, 4))
+                  }
                   score={film.vote_average}
                   title={title || name}
                   poster={film.poster_path}
