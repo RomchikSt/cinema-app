@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 
-const ScrollHeader = ({ header, showLink = true }) => {
+const ScrollHeader = ({ header, showLink = true, onPress }) => {
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.header}>{header}</Text>
       {showLink && (
-        <Pressable>
+        <Pressable onPress={onPress}>
           <Text style={styles.linkText}>See All</Text>
         </Pressable>
       )}

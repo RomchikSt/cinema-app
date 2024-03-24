@@ -10,9 +10,19 @@ const MovieScroll = ({ header, data, mediaType, showLink }) => {
     navigation.push("InfoFilmScreen", { id: id, mediaType: mediaType });
   };
 
+  const hendlePressAll = () => {
+    navigation.push("FullDataScreen", {
+      data: data,
+    });
+  };
+
   return (
     <View>
-      <ScrollHeader header={header} showLink={showLink} />
+      <ScrollHeader
+        header={header}
+        showLink={showLink}
+        onPress={hendlePressAll}
+      />
       <ScrollView
         horizontal
         bounces={false}

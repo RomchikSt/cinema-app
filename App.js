@@ -12,7 +12,7 @@ import InfoFilmScreen from "./shared/screens/InfoFilmScreen/InfoFilmScreen";
 import InfoActorScreen from "./shared/screens/InfoActorScreen/InfoActorScreen";
 import SearchScreen from "./screens/search/SearchScreen";
 import FavoritesScreen from "./screens/favorites/FavoritesScreen";
-
+import FullDataScreen from "./shared/screens/FullDataScreen/FullDataScreen";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -48,6 +48,14 @@ function HomeStackNavigator() {
       <Stack.Screen
         name="InfoActorScreen"
         component={InfoActorScreen}
+        options={{
+          headerBackTitleVisible: false,
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="FullDataScreen"
+        component={FullDataScreen}
         options={{
           headerBackTitleVisible: false,
           headerTitleAlign: "center",
