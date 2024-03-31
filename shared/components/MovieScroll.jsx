@@ -13,6 +13,7 @@ const MovieScroll = ({ header, data, mediaType, showLink }) => {
   const hendlePressAll = () => {
     navigation.push("FullDataScreen", {
       data: data,
+      mediaType: mediaType,
     });
   };
 
